@@ -263,11 +263,36 @@ void testQuantity() {
 	assert(m.size() == 0);
 }
 
+
+void testValueBag() {
+	cout << "Test valueBag" << endl;
+
+	Map m;
+	auto valArr = m.valueBag();
+
+	assert(valArr.size() == 0);
+
+	for (int i = 1; i <= 16; i++)
+		m.add(i, i);
+
+	valArr = m.valueBag();
+
+	assert(valArr.size() == m.size() && m.size() == 16);
+
+	auto it = m.iterator();
+	for (int i = 1; i <= 16; i++)
+	{
+		assert(valArr[i - 1] == it.getCurrent().second);
+		it.next();
+	}
+}
+
 void testAllExtended() {
 	testCreate();
 	testAdd();
 	testRemove();
 	testIterator();
+	testValueBag();
 	testQuantity();
 }
 

@@ -1,23 +1,25 @@
 #pragma once
 #include <utility>
-//DO NOT INCLUDE MAPITERATOR
+#include <vector>
 
 
-//DO NOT CHANGE THIS PART
 typedef int TKey;
 typedef int TValue;
 typedef std::pair<TKey, TValue> TElem;
 #define NULL_TVALUE -111111
-#define NULL_TELEM pair<TKey, TValue>(-111111, -111111)
+#define NULL_TELEM std::pair<TKey, TValue>(-111111, -111111)
 class MapIterator;
 
 
 class Map {
-	//DO NOT CHANGE THIS PART
 	friend class MapIterator;
 
 	private:
-		//TODO - Representation
+		int capacity;
+		int currentSize;
+		TElem* e;
+
+		void resize();
 
 	public:
 
@@ -32,7 +34,7 @@ class Map {
 	//searches for the key and returns the value associated with the key if the map contains the key or null: NULL_TVALUE otherwise
 	TValue search(TKey c) const;
 
-	//removes a key from the map and returns the value associated with the key if the key existed ot null: NULL_TVALUE otherwise
+	//removes a key from the map and returns the value associated with the key if the key existed or null: NULL_TVALUE otherwise
 	TValue remove(TKey c);
 
 	//returns the number of pairs (key,value) from the map
@@ -47,7 +49,6 @@ class Map {
 	// destructor
 	~Map();
 
+	//returns a vector with all the values from the map
+	std::vector<TValue> valueBag() const;
 };
-
-
-
